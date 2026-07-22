@@ -8,6 +8,8 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -19,12 +21,15 @@
   services.v2raya.enable = true;
   services.v2raya.cliPackage = pkgs.xray;
   services.flatpak.enable = true;
-
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  programs.steam = {
+    enable = true;
+    dedicatedServer.openFirewall = false;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 
   environment.systemPackages = with pkgs; [
     man
