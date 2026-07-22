@@ -92,12 +92,16 @@
         system:
         let
           targetPkgs = makePkgs system;
+          baseShell = import ./shells/base.nix { pkgs = targetPkgs; };
+          goShell = import ./shells/go.nix { pkgs = targetPkgs; };
         in
         {
-          base = import ./shells/base.nix { pkgs = targetPkgs; };
-          go = import ./shells/go.nix { pkgs = targetPkgs; };
-          go-kucoin = import ./shells/go-kucoin.nix { pkgs = targetPkgs; };
-          kucoin = import ./shells/kucoin.nix { pkgs = targetPkgs; };
+          base = baseShell;
+          go = goShell;
+          kucoin = import ./shells/kucoin.nix {
+            pkgs = targetPkgs;
+            inherit baseShell goShell;
+          };
           evm = import ./shells/evm.nix {
             pkgs = targetPkgs;
             inherit solc;
