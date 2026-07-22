@@ -20,6 +20,10 @@
   services.v2raya.cliPackage = pkgs.xray;
   services.flatpak.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
