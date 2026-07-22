@@ -1,4 +1,8 @@
-{ pkgs, baseShell,goShell }:
+{
+  pkgs,
+  baseShell,
+  goShell,
+}:
 
 let
   privateRepo = "bitbucket.kucoin.net";

@@ -69,6 +69,8 @@
 
               baseShell = import ./shells/base.nix { pkgs = linuxPkgs; };
               goShell = import ./shells/go.nix { pkgs = linuxPkgs; };
+              webShell = import ./shells/web.nix { pkgs = linuxPkgs; };
+
               evmShell = import ./shells/evm.nix {
                 pkgs = linuxPkgs;
                 inherit solc;
@@ -82,6 +84,7 @@
               ]
               ++ baseShell.buildInputs
               ++ goShell.buildInputs
+              ++ webShell.buildInputs
               ++ evmShell.buildInputs;
             }
           )
@@ -94,10 +97,12 @@
           targetPkgs = makePkgs system;
           baseShell = import ./shells/base.nix { pkgs = targetPkgs; };
           goShell = import ./shells/go.nix { pkgs = targetPkgs; };
+          webShell = import ./shells/web.nix { pkgs = targetPkgs; };
         in
         {
           base = baseShell;
           go = goShell;
+          web = webShell;
           kucoin = import ./shells/kucoin.nix {
             pkgs = targetPkgs;
             inherit baseShell goShell;
@@ -106,6 +111,7 @@
             pkgs = targetPkgs;
             inherit solc;
           };
+
         }
       );
     };
