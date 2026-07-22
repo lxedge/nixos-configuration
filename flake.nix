@@ -105,7 +105,7 @@
           web = webShell;
           kucoin = import ./shells/kucoin.nix {
             pkgs = targetPkgs;
-            inherit baseShell goShell;
+            inherit baseShell goShell webShell;
           };
           evm = import ./shells/evm.nix {
             pkgs = targetPkgs;

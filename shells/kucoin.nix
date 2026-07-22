@@ -2,6 +2,7 @@
   pkgs,
   baseShell,
   goShell,
+  webShell,
 }:
 
 let
@@ -11,6 +12,7 @@ pkgs.mkShell {
   inputsFrom = [
     baseShell
     goShell
+    webShell
   ];
 
   shellHook = ''
