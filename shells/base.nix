@@ -17,5 +17,6 @@ pkgs.mkShell {
     kdlfmt
     podman
     podman-tui
+    pandoc
   ];
 }

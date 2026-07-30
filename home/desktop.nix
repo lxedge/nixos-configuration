@@ -16,5 +16,7 @@
     claude-code
     dbeaver-bin
     k3s
+    pandoc
+    bun
   ];
 }

@@ -11,6 +11,7 @@ pkgs.mkShell {
     vscode-langservers-extracted
     biome
     vitejs
+    bun
   ];
 
   shellHook = ''
