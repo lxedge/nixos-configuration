@@ -14,11 +14,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    solc = {
-      url = "github:hellwolf/solc.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -28,7 +23,6 @@
       # flake-utils,
       home-manager,
       rust-overlay,
-      solc,
       ...
     }@inputs:
     let
@@ -43,7 +37,6 @@
           inherit system;
           overlays = [
             rust-overlay.overlays.default
-            solc.overlay
           ];
           config.allowUnfree = true;
         };
@@ -70,11 +63,7 @@
               baseShell = import ./shells/base.nix { pkgs = linuxPkgs; };
               goShell = import ./shells/go.nix { pkgs = linuxPkgs; };
               webShell = import ./shells/web.nix { pkgs = linuxPkgs; };
-
-              evmShell = import ./shells/evm.nix {
-                pkgs = linuxPkgs;
-                inherit solc;
-              };
+              evmShell = import ./shells/evm.nix { pkgs = linuxPkgs; };
             in
             {
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
@@ -98,18 +87,21 @@
           baseShell = import ./shells/base.nix { pkgs = targetPkgs; };
           goShell = import ./shells/go.nix { pkgs = targetPkgs; };
           webShell = import ./shells/web.nix { pkgs = targetPkgs; };
+          evmShell = import ./shells/evm.nix { pkgs = targetPkgs; };
         in
         {
           base = baseShell;
           go = goShell;
           web = webShell;
+          evm = evmShell;
           kucoin = import ./shells/kucoin.nix {
             pkgs = targetPkgs;
-            inherit baseShell goShell webShell;
-          };
-          evm = import ./shells/evm.nix {
-            pkgs = targetPkgs;
-            inherit solc;
+            inherit
+              baseShell
+              goShell
+              webShell
+              evmShell
+              ;
           };
 
         }

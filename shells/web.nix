@@ -10,7 +10,6 @@ pkgs.mkShell {
     typescript-language-server
     vscode-langservers-extracted
     biome
-    vitejs
     bun
   ];
 
@@ -22,7 +21,6 @@ pkgs.mkShell {
     echo "--- pnpm:  $(pnpm --version)"
     echo "--- tsc:   $(tsc --version)"
     echo "--- biome: $(biome --version)"
-    echo "--- vite:  $(vite --version)"
     echo "------ Web development env loaded."
   '';
 }

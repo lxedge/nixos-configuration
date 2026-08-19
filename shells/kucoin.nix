@@ -3,6 +3,7 @@
   baseShell,
   goShell,
   webShell,
+  evmShell,
 }:
 
 let
@@ -13,6 +14,7 @@ pkgs.mkShell {
     baseShell
     goShell
     webShell
+    evmShell
   ];
 
   shellHook = ''
