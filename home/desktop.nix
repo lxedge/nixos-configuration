@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -14,6 +14,7 @@
     emacs-pgtk
     vscode
     claude-code
+    inputs.oh-my-pi.packages.${pkgs.system}.default
     dbeaver-bin
     k3s
     pandoc

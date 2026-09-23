@@ -11,7 +11,10 @@
     ./modules/system.nix
     ./modules/shell.nix
     ./modules/i18n.nix
+    ./modules/vpx.nix
   ];
+
+  vpx.enable = true;
 
   nix.settings = {
     substituters = [

@@ -14,6 +14,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    oh-my-pi = {
+      url = "github:can1357/oh-my-pi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -52,7 +57,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.miles = import ./home;
+            home-manager.users.miles = {
+              imports = [ ./home ];
+              _module.args = { inherit inputs; };
+            };
           }
 
           (
