@@ -8,6 +8,7 @@
     wechat-uos
     qqmusic
     discord
+    zoom-us
     #
     corectrl
     wezterm
