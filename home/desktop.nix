@@ -6,6 +6,7 @@
     brave
     telegram-desktop
     wechat-uos
+    feishu
     # qqmusic
     discord
     zoom-us

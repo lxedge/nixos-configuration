@@ -16,8 +16,28 @@
 
   services.xserver.enable = true;
   services.xserver.xkb.options = "ctrl:nocaps";
+  services.xserver.videoDrivers = [ "nvidia" ];
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [ intel-media-driver ];
+  };
+
+  hardware.nvidia = {
+    open = true;
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
+    nvidiaSettings = true;
+    prime = {
+      offload.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:2:0:0";
+    };
+  };
   services.v2raya.enable = true;
   services.v2raya.cliPackage = pkgs.xray;
   services.flatpak.enable = true;

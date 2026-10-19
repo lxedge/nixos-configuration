@@ -11,6 +11,9 @@ pkgs.mkShell {
     vscode-langservers-extracted
     biome
     bun
+    (vitejs.override {
+      fetchPnpmDeps = pkgs.fetchPnpmDeps.override { pnpm = pkgs.pnpm_10; };
+    })
   ];
 
   shellHook = ''
